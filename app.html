@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIDA-Pad - Rettungsdienst Tablet</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="tablet-container">
+        <!-- Header -->
+        <header class="tablet-header">
+            <div class="header-left">
+                <h1><i class="fas fa-ambulance"></i> NIDA-Pad</h1>
+                <div class="patient-info">
+                    <span class="patient-name">Mustermann, Max</span>
+                    <span class="patient-id">ID: 2024-0423-001</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="time-display" id="current-time">14:23:45</div>
+                <div class="status-indicator online">
+                    <i class="fas fa-wifi"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Tab Navigation -->
+        <nav class="tab-nav">
+            <button class="tab-btn active" data-tab="patient">
+                <i class="fas fa-user"></i>
+                <span>Stammdaten</span>
+            </button>
+            <button class="tab-btn" data-tab="vitals">
+                <i class="fas fa-heartbeat"></i>
+                <span>Vitalwerte</span>
+            </button>
+            <button class="tab-btn" data-tab="ekg">
+                <i class="fas fa-wave-square"></i>
+                <span>EKG</span>
+            </button>
+            <button class="tab-btn" data-tab="medication">
+                <i class="fas fa-pills"></i>
+                <span>Medikation</span>
+            </button>
+            <button class="tab-btn" data-tab="protocol">
+                <i class="fas fa-clipboard"></i>
+                <span>Protokoll</span>
+            </button>
+        </nav>
+
+        <!-- Tab Content -->
+        <main class="tab-content">
+            <!-- Patient Tab -->
+            <div class="tab-pane active" id="patient">
+                <div class="patient-section">
+                    <div class="patient-card">
+                        <h2>Stammdaten</h2>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Name:</label>
+                                <input type="text" id="patient-name" value="Mustermann, Max">
+                            </div>
+                            <div class="form-group">
+                                <label>Geburtsdatum:</label>
+                                <input type="date" id="patient-dob" value="1985-06-15">
+                            </div>
+                            <div class="form-group">
+                                <label>Geschlecht:</label>
+                                <select id="patient-gender">
+                                    <option value="male" selected>Männlich</option>
+                                    <option value="female">Weiblich</option>
+                                    <option value="other">Divers</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Alter:</label>
+                                <input type="text" id="patient-age" value="38">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="patient-card">
+                        <h2>Ersteinschätzung</h2>
+                        <div class="form-group">
+                            <label>Chief Complaint:</label>
+                            <textarea id="chief-complaint" rows="3">Thoraxschmerzen seit 2 Stunden</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Notfallschwere:</label>
+                            <div class="urgency-selector">
+                                <button class="urgency-btn blue" data-urgency="blue">Blau</button>
+                                <button class="urgency-btn green" data-urgency="green">Grün</button>
+                                <button class="urgency-btn yellow active" data-urgency="yellow">Gelb</button>
+                                <button class="urgency-btn orange" data-urgency="orange">Orange</button>
+                                <button class="urgency-btn red" data-urgency="red">Rot</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="patient-card">
+                        <h2>Vorerkrankungen</h2>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" checked> Hypertonie</label>
+                            <label><input type="checkbox"> Diabetes</label>
+                            <label><input type="checkbox" checked> KHK</label>
+                            <label><input type="checkbox"> Asthma</label>
+                            <label><input type="checkbox"> COPD</label>
+                            <label><input type="checkbox"> Schlaganfall</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vitals Tab -->
+            <div class="tab-pane" id="vitals">
+                <div class="vitals-grid">
+                    <div class="vital-card">
+                        <div class="vital-header">
+                            <i class="fas fa-heart"></i>
+                            <span>Herzfrequenz</span>
+                        </div>
+                        <div class="vital-value">
+                            <input type="text" id="heart-rate" value="78" style="background: transparent; border: none; color: inherit; font-size: inherit; font-weight: inherit; text-align: center; width: 60px;">
+                            <span class="unit">bpm</span>
+                        </div>
+                        <div class="vital-trend">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>Stabil</span>
+                        </div>
+                    </div>
+
+                    <div class="vital-card">
+                        <div class="vital-header">
+                            <i class="fas fa-lungs"></i>
+                            <span>Sauerstoffsättigung</span>
+                        </div>
+                        <div class="vital-value">
+                            <input type="text" id="spo2" value="96" style="background: transparent; border: none; color: inherit; font-size: inherit; font-weight: inherit; text-align: center; width: 60px;">
+                            <span class="unit">%</span>
+                        </div>
+                        <div class="vital-trend">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>Steigend</span>
+                        </div>
+                    </div>
+
+                    <div class="vital-card">
+                        <div class="vital-header">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Blutdruck</span>
+                        </div>
+                        <div class="vital-value">
+                            <input type="text" id="blood-pressure" value="135/85" style="background: transparent; border: none; color: inherit; font-size: inherit; font-weight: inherit; text-align: center; width: 100px;">
+                            <span class="unit">mmHg</span>
+                        </div>
+                        <div class="vital-trend">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>Stabil</span>
+                        </div>
+                    </div>
+
+                    <div class="vital-card">
+                        <div class="vital-header">
+                            <i class="fas fa-thermometer-half"></i>
+                            <span>Körpertemperatur</span>
+                        </div>
+                        <div class="vital-value">
+                            <input type="text" id="temperature" value="36.8" style="background: transparent; border: none; color: inherit; font-size: inherit; font-weight: inherit; text-align: center; width: 60px;">
+                            <span class="unit">°C</span>
+                        </div>
+                        <div class="vital-trend">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>Stabil</span>
+                        </div>
+                    </div>
+
+                    <div class="vital-card">
+                        <div class="vital-header">
+                            <i class="fas fa-wind"></i>
+                            <span>Atemfrequenz</span>
+                        </div>
+                        <div class="vital-value">
+                            <input type="text" id="respiratory-rate" value="16" style="background: transparent; border: none; color: inherit; font-size: inherit; font-weight: inherit; text-align: center; width: 60px;">
+                            <span class="unit">/min</span>
+                        </div>
+                        <div class="vital-trend">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>Stabil</span>
+                        </div>
+                    </div>
+
+                    <div class="vital-card">
+                        <div class="vital-header">
+                            <i class="fas fa-brain"></i>
+                            <span>GCS</span>
+                        </div>
+                        <div class="vital-value">
+                            <input type="text" id="gcs" value="15" style="background: transparent; border: none; color: inherit; font-size: inherit; font-weight: inherit; text-align: center; width: 60px;">
+                            <span class="unit">/15</span>
+                        </div>
+                        <div class="vital-trend">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>Stabil</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vitals-chart">
+                    <h3>Vitalverlauf</h3>
+                    <canvas id="vitals-chart"></canvas>
+                </div>
+            </div>
+
+            <!-- EKG Tab -->
+            <div class="tab-pane" id="ekg">
+                <div class="ekg-display">
+                    <div class="ekg-header">
+                        <h2>EKG-Monitoring</h2>
+                        <div class="ekg-controls">
+                            <button class="control-btn" id="ekg-start">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <button class="control-btn" id="ekg-pause">
+                                <i class="fas fa-pause"></i>
+                            </button>
+                            <button class="control-btn" id="ekg-reset">
+                                <i class="fas fa-redo"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="ekg-canvas-container">
+                        <canvas id="ekg-canvas"></canvas>
+                    </div>
+                    <div class="ekg-info">
+                        <div class="ekg-parameter">
+                            <span class="label">Herzfrequenz:</span>
+                            <input type="text" id="ekg-hr" value="78 bpm" style="background: transparent; border: none; color: inherit; font-size: inherit; font-weight: inherit; text-align: center; width: 80px;">
+                        </div>
+                        <div class="ekg-parameter">
+                            <span class="label">Rhythmus:</span>
+                            <input type="text" id="ekg-rhythm" value="Sinusrhythmus" style="background: transparent; border: none; color: inherit; font-size: inherit; font-weight: inherit; text-align: center; width: 120px;">
+                        </div>
+                        <div class="ekg-parameter">
+                            <span class="label">Achsenlage:</span>
+                            <input type="text" id="ekg-axis" value="Normal" style="background: transparent; border: none; color: inherit; font-size: inherit; font-weight: inherit; text-align: center; width: 80px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Medication Tab -->
+            <div class="tab-pane" id="medication">
+                <div class="medication-section">
+                    <div class="medication-form">
+                        <h3>Medikament verabreichen</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Medikament:</label>
+                                <select id="medication-select">
+                                    <option value="">-- Auswahl --</option>
+                                    <option value="aspirin">ASS 100mg</option>
+                                    <option value="heparin">Heparin 5000 IE</option>
+                                    <option value="morphine">Morphin 5mg</option>
+                                    <option value="nitro">Nitrospray</option>
+                                    <option value="oxygen">Sauerstoff 4l/min</option>
+                                    <option value="adrenaline">Adrenalin 1mg</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Dosis:</label>
+                                <input type="text" id="medication-dose" placeholder="z.B. 1 Tablette">
+                            </div>
+                            <div class="form-group">
+                                <label>Zeitpunkt:</label>
+                                <input type="time" id="medication-time" value="14:23">
+                            </div>
+                            <div class="form-group">
+                                <label>Wirkung:</label>
+                                <select id="medication-effect">
+                                    <option value="positive">Positiv</option>
+                                    <option value="neutral">Neutral</option>
+                                    <option value="negative">Negativ</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button class="btn-primary" id="add-medication">
+                            <i class="fas fa-plus"></i> Medikament hinzufügen
+                        </button>
+                    </div>
+
+                    <div class="medication-list">
+                        <h3>Verabreichte Medikamente</h3>
+                        <div class="medication-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Zeit</th>
+                                        <th>Medikament</th>
+                                        <th>Dosis</th>
+                                        <th>Wirkung</th>
+                                        <th>Aktion</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="medication-tbody">
+                                    <tr>
+                                        <td>14:15</td>
+                                        <td>ASS 100mg</td>
+                                        <td>1 Tablette</td>
+                                        <td><span class="effect-positive">Positiv</span></td>
+                                        <td><button class="btn-remove"><i class="fas fa-trash"></i></button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Protocol Tab -->
+            <div class="tab-pane" id="protocol">
+                <div class="protocol-section">
+                    <div class="protocol-form">
+                        <h3>Ereignis dokumentieren</h3>
+                        <div class="form-group">
+                            <label>Zeitpunkt:</label>
+                            <input type="time" id="event-time" value="14:23">
+                        </div>
+                        <div class="form-group">
+                            <label>Ereignis:</label>
+                            <select id="event-type">
+                                <option value="assessment">Einschätzung</option>
+                                <option value="medication">Medikation</option>
+                                <option value="procedure">Maßnahme</option>
+                                <option value="vital-change">Vitalwertänderung</option>
+                                <option value="communication">Kommunikation</option>
+                                <option value="other">Sonstiges</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Beschreibung:</label>
+                            <textarea id="event-description" rows="3"></textarea>
+                        </div>
+                        <button class="btn-primary" id="add-event">
+                            <i class="fas fa-plus"></i> Ereignis hinzufügen
+                        </button>
+                    </div>
+
+                    <div class="protocol-timeline">
+                        <h3>Ereignisprotokoll</h3>
+                        <div class="timeline" id="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-time">14:15</div>
+                                <div class="timeline-content">
+                                    <span class="timeline-type assessment">Einschätzung</span>
+                                    <p>Patient bewusst, orientiert, klagen über Thoraxschmerzen</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-time">14:18</div>
+                                <div class="timeline-content">
+                                    <span class="timeline-type medication">Medikation</span>
+                                    <p>ASS 100mg 1 Tablette verabreicht</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="tablet-footer">
+            <div class="footer-left">
+                <button class="footer-btn">
+                    <i class="fas fa-save"></i>
+                    <span>Speichern</span>
+                </button>
+                <button class="footer-btn">
+                    <i class="fas fa-print"></i>
+                    <span>Drucken</span>
+                </button>
+            </div>
+            <div class="footer-right">
+                <button class="footer-btn emergency">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>Notfall</span>
+                </button>
+                <button class="footer-btn">
+                    <i class="fas fa-hospital"></i>
+                    <span>Klinik</span>
+                </button>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
