@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>NIDA-Pad - Anmeldung</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="login-body">
+    <div class="login-container">
+        <div class="login-logo">
+            <i class="fas fa-ambulance"></i>
+            <h1>NIDA-Pad</h1>
+            <p>Notfall-Informations- und Dokumentations-Assistent</p>
+        </div>
+        
+        <form id="login-form" class="login-form">
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" id="user-name" name="userName" required placeholder="Nachname, Vorname">
+            </div>
+            
+            <div class="form-group">
+                <label>Funktion / Qualifikation</label>
+                <select id="position" name="position" required>
+                    <option value="">-- Bitte wählen --</option>
+                    <option value="RH">Rettungshelfer (RH)</option>
+                    <option value="RH-A">Rettungshelfer in Ausbildung (RH i.A.)</option>
+                    <option value="RS">Rettungssanitäter (RS)</option>
+                    <option value="RS-A">Rettungssanitäter in Ausbildung (RS i.A.)</option>
+                    <option value="NFS">Notfallsanitäter (NFS)</option>
+                    <option value="NFS-A">Notfallsanitäter in Ausbildung (NFS i.A.)</option>
+                    <option value="NA">Notarzt (NA)</option>
+                    <option value="LNA">Leitender Notarzt (LNA)</option>
+                    <option value="OrgL">Organisatorischer Leiter Rettungsdienst (OrgL)</option>
+                    <option value="Fahrer">Fahrer</option>
+                    <option value="Praktikant">Praktikant</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Fahrzeug</label>
+                <select id="vehicle" name="vehicle" required>
+                    <option value="">-- Bitte wählen --</option>
+                    <option value="RTW-1">RTW 1</option>
+                    <option value="RTW-2">RTW 2</option>
+                    <option value="RTW-3">RTW 3</option>
+                    <option value="NEF-1">NEF 1</option>
+                    <option value="NEF-2">NEF 2</option>
+                    <option value="KTW-1">KTW 1</option>
+                    <option value="KTW-2">KTW 2</option>
+                    <option value="NAW">NAW</option>
+                    <option value="ITW">ITW</option>
+                    <option value="RTH">RTH</option>
+                    <option value="GW-San">GW-San</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Wache / Standort</label>
+                <input type="text" id="station" name="station" placeholder="z.B. Wache 1 - Hauptwache">
+            </div>
+            
+            <div class="form-group">
+                <label>Schicht</label>
+                <select id="shift" name="shift" required>
+                    <option value="">-- Bitte wählen --</option>
+                    <option value="frueh">Frühschicht (07:00 - 15:00)</option>
+                    <option value="spaet">Spätschicht (15:00 - 23:00)</option>
+                    <option value="nacht">Nachtschicht (23:00 - 07:00)</option>
+                    <option value="24h">24h-Schicht</option>
+                    <option value="48h">48h-Schicht</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="login-btn">
+                <i class="fas fa-sign-in-alt"></i> Dienstbeginn
+            </button>
+        </form>
+        
+        <div class="login-footer">
+            <span>medDV GmbH</span>
+            <span>v4.2.1</span>
+        </div>
+    </div>
+    
+    <script src="login.js"></script>
+</body>
+</html>
